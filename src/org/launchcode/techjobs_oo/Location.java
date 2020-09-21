@@ -16,7 +16,7 @@ public class Location {
         this();
         this.value = value;
     }
-    // TODO: Add a constructor that takes a string as a parameter and assigns it to the 'value' field. The
+    // TODO --completed--: Add a constructor that takes a string as a parameter and assigns it to the 'value' field. The
     //  constructor should also call the empty constructor in order to initialize the 'id' field.
 
 
