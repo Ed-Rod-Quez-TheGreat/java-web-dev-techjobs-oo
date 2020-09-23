@@ -52,4 +52,16 @@ public class JobTest {
         assertFalse(test_job3.equals(test_job4));
     }
 
+    @Test
+    //toString test, when passed Job object, returns string w/ blank before and after job info
+
+    public void testToStringBlanks() {
+        assertTrue(test_job1.toString().startsWith("\n"));
+        assertTrue(test_job1.toString().endsWith("\n"));
+
+    }
+
+    //string should contain label for each field, then the data in the field, each on separate line
+    //if field empty, returns 'Data not available'
+    //(optional) if only has id field, return 'OOPS! This job does not seem to exist'
 }
