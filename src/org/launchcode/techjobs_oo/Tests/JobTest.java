@@ -4,8 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.launchcode.techjobs_oo.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class JobTest {
 
@@ -45,6 +44,12 @@ public class JobTest {
         assertTrue(test_job3.getPositionType().getValue() == "Quality control");
         assertTrue(test_job3.getCoreCompetency().getValue() == "Persistence");
 
+    }
+
+    @Test
+    //two Jobs are equal if ID's match, objects not equal even if all other fields match
+    public void testJobsForEquality() {
+        assertFalse(test_job3.equals(test_job4));
     }
 
 }
