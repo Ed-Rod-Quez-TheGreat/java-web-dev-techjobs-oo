@@ -36,13 +36,27 @@ public class JobTest {
     //int id, String name, Employer employer, Location location, PostiionType postiontype, CoreCompetency corecompetency
 
     public void testJobConstructorSetsAllFields() {
-        assertTrue(test_job3 instanceof Job);
+        Job test_job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        assertEquals(true, test_job3.getName() instanceof String );
+        assertEquals(true, test_job3.getEmployer() instanceof Employer );
+        assertEquals(true, test_job3.getLocation() instanceof Location );
+        assertEquals(true, test_job3.getPositionType() instanceof PositionType );
+        assertEquals(true, test_job3.getCoreCompetency() instanceof CoreCompetency );
+
+        assertEquals("Product tester", test_job3.getName() );
+        assertEquals("ACME", test_job3.getEmployer().getValue() );
+        assertEquals("Desert", test_job3.getLocation().getValue());
+        assertEquals("Quality control", test_job3.getPositionType().getValue());
+        assertEquals("Persistence", test_job3.getCoreCompetency().getValue());
+        //PREVIOUS ATTEMPTED CODE:
+/*        assertTrue(test_job3 instanceof Job);
         assertEquals(3.0, test_job3.getId(), .001);
         assertTrue(test_job3.getName() == "Product tester");
         assertTrue(test_job3.getEmployer().getValue() == "ACME");
         assertTrue(test_job3.getLocation().getValue() == "Desert");
         assertTrue(test_job3.getPositionType().getValue() == "Quality control");
-        assertTrue(test_job3.getCoreCompetency().getValue() == "Persistence");
+        assertTrue(test_job3.getCoreCompetency().getValue() == "Persistence");*/
 
     }
 
@@ -58,10 +72,19 @@ public class JobTest {
     public void testToStringBlanks() {
         assertTrue(test_job1.toString().startsWith(" "));
         assertTrue(test_job1.toString().endsWith(" "));
-        //assertTrue(test_job4.toString().startsWith(" "));
+
     }
 
+    @Test
     //string should contain label for each field, then the data in the field, each on separate line
+    public void testLabelsAndFields() {
+        Job job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
+
+
+
+    }
+
+
     //if field empty, returns 'Data not available'
     //(optional) if only has id field, return 'OOPS! This job does not seem to exist'
 }
