@@ -27,8 +27,10 @@ public class JobTest {
     @Test
 //theoretically each Job object id should not be the same, each job id different by 1
     public void testSettingJobId() {
-        assertTrue(!test_job1.equals(test_job2));
-        assertTrue(test_job1.getId() + 1 == test_job2.getId());
+        Job job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
+        Job job5 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
+
+        assertEquals(false, job4.equals(job5));
     }
 
     @Test
@@ -78,10 +80,14 @@ public class JobTest {
     @Test
     //string should contain label for each field, then the data in the field, each on separate line
     public void testLabelsAndFields() {
-        Job job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
+        Job job7 = new Job("Product tester", new Employer("ACME"), new Location(), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
 
-
-
+        assertEquals("\nID: 4\n" +
+                "Name: Product tester\n" +
+                "Employer: ACME\n" +
+                "Location: Data not available\n" +
+                "Position Type: Quality control\n" +
+                "Core Competency: Persistence\n" , job7.toString());
     }
 
 

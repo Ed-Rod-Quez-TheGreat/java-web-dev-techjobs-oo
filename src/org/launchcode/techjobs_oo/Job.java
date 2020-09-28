@@ -41,8 +41,12 @@ public class Job {
         }
 
         return
-                " ";
-
+                "\nID: " + getId() +
+                        "\nName: " + (getName() == null || getName() == "" ? "Data not available" : getName()) +
+                        printJobField(getEmployer(),"Employer") +
+                        printJobField(getLocation(),"Location") +
+                        printJobField(getPositionType(),"Position Type") +
+                        printJobField(getCoreCompetency(),"Core Competency")+"\n";
     }
 
     private String printJobField(JobField field, String type) {
