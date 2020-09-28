@@ -1,6 +1,5 @@
 package org.launchcode.techjobs_oo.Tests;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.launchcode.techjobs_oo.*;
 
@@ -8,29 +7,13 @@ import static org.junit.Assert.*;
 
 public class JobTest {
 
-    Job test_job1;
-    Job test_job2;
-    Job test_job3;
-    Job test_job4;
-    //set job objects for future testing
-
-    @Before
-
-    public void testJobObjects() {
-        test_job1 = new Job();
-        test_job2 = new Job();
-        test_job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        test_job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-    }
-
-
     @Test
 //theoretically each Job object id should not be the same, each job id different by 1
     public void testSettingJobId() {
-        Job job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
-        Job job5 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
+        Job test_Job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
+        Job test_Job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
 
-        assertEquals(false, job4.equals(job5));
+        assertEquals(false, test_Job1.equals(test_Job2));
     }
 
     @Test
@@ -65,32 +48,54 @@ public class JobTest {
     @Test
     //two Jobs are equal if ID's match, objects not equal even if all other fields match
     public void testJobsForEquality() {
-        assertFalse(test_job3.equals(test_job4));
+        Job test_job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job test_job5 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        assertFalse(test_job4.equals(test_job5));
     }
 
-    @Test
+   // @Test
     //toString test, when passed Job object, returns string w/ blank before and after job info
-
-    public void testToStringBlanks() {
-        assertTrue(test_job1.toString().startsWith(" "));
-        assertTrue(test_job1.toString().endsWith(" "));
-
-    }
+    //TEST NOT NEEDED WHEN toString method completed, only proof of concept
+//    public void testToStringBlanks() {
+//        assertTrue(test_job1.toString().startsWith(" "));
+//        assertTrue(test_job1.toString().endsWith(" "));
+//
+//    }
 
     @Test
     //string should contain label for each field, then the data in the field, each on separate line
-    public void testLabelsAndFields() {
-        Job job7 = new Job("Product tester", new Employer("ACME"), new Location(), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
+    public void testToString() {
+        Job test_job6 = new Job("Product tester", new Employer("ACME"), new Location(), new PositionType("Quality control"), new CoreCompetency("Persistence"));;
+
+        assertEquals("\nID: 3\n" +
+                "Name: Product tester\n" +
+                "Employer: ACME\n" +
+                "Location: Data not available\n" +
+                "Position Type: Quality control\n" +
+                "Core Competency: Persistence\n" , test_job6.toString());
+    }
+
+    @Test
+    //if field empty, returns 'Data not available'
+    public void testIsDataAvail() {
+        Job test_job7 = new Job("Product tester", new Employer("ACME"), new Location(), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
         assertEquals("\nID: 4\n" +
                 "Name: Product tester\n" +
                 "Employer: ACME\n" +
                 "Location: Data not available\n" +
                 "Position Type: Quality control\n" +
-                "Core Competency: Persistence\n" , job7.toString());
+                "Core Competency: Persistence\n" , test_job7.toString());
+
     }
 
-
-    //if field empty, returns 'Data not available'
+    @Test
     //(optional) if only has id field, return 'OOPS! This job does not seem to exist'
+    public void testDoesJobExist() {
+        Job test_job8 = new Job();
+
+        assertEquals("OOPS! This job does not seem to exist.", test_job8.toString());
+    }
+
 }
